@@ -1,0 +1,15 @@
+model{
+	for(i in 1:n){
+		y[i,1:M] ~ dmnorm(mu[z[i] , 1:M] , sigma[z[i],1:M,1:M])
+		z[i] ~ dcat(omega)
+	}
+	
+	for(j in 1:M){
+		mu[j,1:M] ~ dmnorm(mu_p[j,1:M] , 100*I)
+		sigma[j,1:M,1:M] ~ dwish(I0, 10)
+	}
+	
+	omega ~ ddirich(alpha)
+	# not very relevant
+}
+

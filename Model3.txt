@@ -1,0 +1,15 @@
+model{
+	for(i in 1:n){
+		y[i,1:M] ~ dmnorm(mu[z[i] , 1:M] , sigma)
+		z[i] ~ dcat(omega)
+	}
+	
+	for(j in 1:M){
+		mu[j,1:M] ~ dmnorm(mu_p[j,1:M] , I)
+	}
+	
+	sigma ~ dwish(I, 3)
+	tau <- inverse(sigma)
+	omega ~ ddirich(rep(1,M))
+}
+
