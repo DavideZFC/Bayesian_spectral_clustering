@@ -1,4 +1,5 @@
 # Bayesian_spectral_clustering
 
-The txt files contain the models that we are using. In particular the final is model5, 
-while model3 cotains a trial with the inverse Whishart as covariance matrix distribution which does not give the desired results
+In the main folder you can find the benchmark datasets that we used. The first thing it to run the file "AGitHub_Benchmarks.R" to load the data.
+Then, you can choose three models to perform bayesian spectral clustering
+
