@@ -1,0 +1,12 @@
+model{
+	for(i in 1:n){
+		y[i,1:M] ~ dmnorm(mu[z[i] , 1:M] , I)
+		z[i] ~ dcat(omega)
+	}
+	
+	for(j in 1:M){
+		mu[j,1:M] ~ dmnorm( mu_p[j,1:M] , I )
+	}	
+	
+	omega ~ ddirich(rep(1,M))
+}
