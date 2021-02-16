@@ -1,1 +1,26 @@
-???
+model{ 
+	for(i in 1:2){
+	  sigma[i] ~ dunif(0,5)
+	}
+
+rho ~ dunif(-1,1)
+
+#Construction of Sigma
+Sigma[1,1] <- sigma[1]*sigma[1]
+Sigma[1,2] <- sigma[1]*sigma[2]*rho
+Sigma[2,1] <- Sigma[1,2]
+Sigma[2,2] <- sigma[2]*sigma[2]
+
+
+for(i in 1:n){
+		y[i,1:M] ~ dmnorm(mu[z[i] , 1:M] , Sigma)
+		z[i] ~ dcat(omega)
+	}
+	
+	for(j in 1:M){
+	  mu[j,1:M] ~ dmnorm(mu_p[j,1:M] , I)
+	}	
+	
+omega ~ ddirich(rep(1,M))
+
+}
